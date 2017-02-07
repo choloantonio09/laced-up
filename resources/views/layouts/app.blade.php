@@ -55,6 +55,34 @@
                         @elseif (Auth::check() && Auth::user()->is_admin)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Maintenance<span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">
+                                            Brands
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Categories
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Sizes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Products
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Welcome, {{ Auth::user()->name }} <span style="color:red">(Administrator)</span>!<span class="caret"></span>
                                 </a>
 
