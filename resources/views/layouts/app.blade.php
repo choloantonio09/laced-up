@@ -12,15 +12,17 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
     <!-- Scripts -->
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/angular.min.js')}}"></script>
+    <script src="{{asset('js/maintenance.js')}}"></script>
     <script>
-        window.Laced-Up = {!! json_encode([
+        window.Laced_Up = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
 </head>
-<body>
+<body ng-app="angularApp" >
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -131,22 +133,26 @@
 
     <!-- MODALS -->
     <!-- MODALS -->
+    @if (Auth::check() && Auth::user()->is_admin)
 
-    <div class="modal fade" id="modalBrands" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div ng-controller="brandCtrl" data-init="{{$brand}}" class="modal fade" id="modalBrands" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Brand</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Brand
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+            </h5>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body" style="max-height: 300px;overflow-y: auto;">
+            <ul>
+                <li ng-repeat="brand in brands"> @{{brand.name}} <button class="pull-right"><span aria-hidden="true">&times;</span></button></li>
+                
+            </ul>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <input type="text" name="newBrand"><button type="button" class="btn btn-primary">Add Brand</button>
           </div>
         </div>
       </div>
@@ -214,7 +220,7 @@
 
     <!-- MODALS -->
     <!-- MODALS -->
-
+    @endif
     <!-- Scripts -->
     <script src="/js/app.js"></script>
 </body>
