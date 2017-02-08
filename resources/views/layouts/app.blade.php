@@ -146,53 +146,114 @@
             </h5>
           </div>
           <div class="modal-body" style="max-height: 300px;overflow-y: auto;">
-            <ul>
-                <li ng-repeat="brand in brands"> @{{brand.name}} <button class="pull-right"><span aria-hidden="true">&times;</span></button></li>
-                
-            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Brand Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="brand in brands">
+                        <td>
+                            <label ng-hide="isEdit && num == $index">@{{brand.name}}</label>
+                            <input ng-show="isEdit && num == $index" type="text" id="brandEdit@{{$index}}" value="@{{brand.name}}">
+                        </td>
+                        <td>
+                            <button ng-hide="isEdit && num == $index" class="pull-right" ng-click="removeBrand($index)">Remove</button>
+                            <button ng-hide="isEdit && num == $index" class="pull-right" ng-click="setEdit(true,$index)">Edit</button>
+                            <button ng-show="isEdit && num == $index" class="pull-right" ng-click="updateBrand($index)">Save</span></button>
+                            <button ng-show="isEdit && num == $index" class="pull-right" ng-click="setEdit(false,$index)">Cancel</span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
           <div class="modal-footer">
-            <input type="text" name="newBrand"><button type="button" class="btn btn-primary">Add Brand</button>
+            <input type="text" name="newBrand" ng-model="newBrand"><button type="button" ng-click="addBrand()" class="btn btn-primary">Add Brand</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div ng-controller="categoriesCtrl" data-init="{{$category}}" class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Categories</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="exampleModalLabel">Categories
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </h5>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body" style="max-height: 300px;overflow-y: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="category in categories">
+                        <td>
+                            <label ng-hide="isEdit && num == $index">@{{category.name}}</label>
+                            <input ng-show="isEdit && num == $index" type="text" id="categoryEdit@{{$index}}" value="@{{category.name}}">
+                        </td>
+                        <td>
+                            <button ng-hide="isEdit && num == $index" class="pull-right" ng-click="removeCategory($index)">Remove</button>
+                            <button ng-hide="isEdit && num == $index" class="pull-right" ng-click="setEdit(true,$index)">Edit</button>
+                            <button ng-show="isEdit && num == $index" class="pull-right" ng-click="updateCategory($index)">Save</span></button>
+                            <button ng-show="isEdit && num == $index" class="pull-right" ng-click="setEdit(false,$index)">Cancel</span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <input type="text" name="newCategory" ng-model="newCategory"><button type="button" ng-click="addCategory()" class="btn btn-primary">Add Category</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalSize" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div ng-controller="sizesCtrl" data-init="{{$size}}" class="modal fade" id="modalSize" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sizes</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="exampleModalLabel">Sizes
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </h5>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body" style="max-height: 300px;overflow-y: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Size Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="size in sizes">
+                        <td>
+                            <label ng-hide="isEdit && num == $index">@{{size.name}}</label>
+                            <input ng-show="isEdit && num == $index" type="text" id="sizeEdit@{{$index}}" value="@{{size.name}}">
+                        </td>
+                        <td>
+                            <button ng-hide="isEdit && num == $index" class="pull-right" ng-click="removeSize($index)">Remove</button>
+                            <button ng-hide="isEdit && num == $index" class="pull-right" ng-click="setEdit(true,$index)">Edit</button>
+                            <button ng-show="isEdit && num == $index" class="pull-right" ng-click="updateSize($index)">Save</span></button>
+                            <button ng-show="isEdit && num == $index" class="pull-right" ng-click="setEdit(false,$index)">Cancel</span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <input type="text" name="newSize" ng-model="newSize"><button type="button" ng-click="addSize()" class="btn btn-primary">Add Size</button>
           </div>
         </div>
       </div>
